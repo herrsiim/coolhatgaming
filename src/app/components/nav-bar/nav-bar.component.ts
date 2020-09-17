@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GamesService } from '../../services/games.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'nav-bar',
@@ -9,12 +10,14 @@ import { GamesService } from '../../services/games.service';
 
 export class NavBarComponent implements OnInit {
   gameCategories: string[] = [];
-  activeCategory: string = "top";
+  activeCategory: string = "top"; // Default categoy selection
 
   @Output() selectCategory = new EventEmitter<string>();
-  
+
   constructor(
-    private gamesService: GamesService
+    private router: Router,
+    private gamesService: GamesService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -24,13 +27,25 @@ export class NavBarComponent implements OnInit {
     );
   }
 
-  setActive(category: string): void {
+  setActiveCategory(category: string): void {
     this.activeCategory = category;
     this.selectCategory.emit(category);
+    this.router.navigate([], { queryParams: { category: category } });
   }
 
   getCategoriesSuccess(categories: string[]): void {
     this.gameCategories = categories;
+    this.navigateOnPageRefresh();
+  }
+
+  /**
+   * URL support for filtering categories
+   */
+  navigateOnPageRefresh(): void {
+    let categoryFromUrl = this.activatedRoute.snapshot.queryParams.category;
+    if (categoryFromUrl && this.gameCategories.includes(categoryFromUrl)) {
+      this.setActiveCategory(categoryFromUrl);
+    }
   }
 
   requestFail(fail): void {

@@ -1,6 +1,6 @@
 <div class="wrap">
     <span *ngFor="let category of gameCategories"
-    (click)="setActive(category)"
-    [class.active]="category == activeCategory" 
+    (click)="setActiveCategory(category)"
+    [class.active]="category == activeCategory"
     [innerHTML]="category"></span>
 </div>

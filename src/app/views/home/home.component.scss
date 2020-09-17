@@ -15,6 +15,10 @@
             border-radius: 15px;
             overflow: hidden;
 
+            &:hover {
+                animation: scale 0.3s forwards;
+            }
+
             img {
                 height: 100%;
                 width: auto;
