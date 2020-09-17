@@ -9,7 +9,8 @@ import { GamesService } from '../../services/games.service';
 
 export class NavBarComponent implements OnInit {
   gameCategories: string[] = [];
-  
+  activeCategory: string = "top";
+
   constructor(
     private gamesService: GamesService
   ) { }
@@ -19,6 +20,10 @@ export class NavBarComponent implements OnInit {
       this.getCategoriesSuccess.bind(this),
       this.requestFail.bind(this)
     );
+  }
+
+  setActive(category: string) {
+    this.activeCategory = category;
   }
 
   getCategoriesSuccess(categories: string[]): void {

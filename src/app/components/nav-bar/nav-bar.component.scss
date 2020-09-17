@@ -1,0 +1,33 @@
+@import "../../../variables.scss";
+
+:host {
+    display: block;
+
+    .wrap {
+        display: flex;
+        height: 55px;
+        width: 100%;
+        background-color: $grey;
+        overflow-x: auto;
+
+        span {
+            //min-width: 130px;
+            padding: 10px 30px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            cursor: pointer;
+            color: white;
+            font-size: 26px;
+
+            &.active {
+                background-color: $green;
+            }
+
+            &:hover {
+                background-color: $green;
+            }
+        }
+    }
+}

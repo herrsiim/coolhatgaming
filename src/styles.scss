@@ -2,10 +2,16 @@
 html {
     margin: 0;
     padding: 0;
+    font-family: arial;
+    user-select: none; 
     
     body {
         margin: 0;
         padding: 0;
+
+        span {
+            display: block;
+        }
     }
 }
 
