@@ -22,6 +22,24 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  displayRibbon(categories: string[]): boolean {
+    if (categories.includes('new') || categories.includes('top')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getRibbonText(categories: string[]): string {
+    if (categories.includes('top')) {
+      return 'top';
+    } else if (categories.includes('new')) {
+      return 'new';
+    } else {
+      return '';
+    }
+  }
+
   switchCategory(selectedItem): void {
     console.log(selectedItem);
     this.category = selectedItem;
