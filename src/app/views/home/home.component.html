@@ -1,6 +1,10 @@
 <nav-bar (selectCategory)="switchCategory($event)"></nav-bar>
-<div class="wrap">
-    <div class="game" *ngFor="let game of allGames | categoryFilter:category">
-        <img [src]="game.image" [alt]="game.name">
+<div class="container">
+    <div class="game-tile" *ngFor="let game of allGames | categoryFilter:category">
+        <img class="display" [src]="game.image" [alt]="game.name">
+        <div class="ribbon">
+            <span>New</span>
+            <img class="ribbon-img" src="../../../assets/img/ribbon.png" alt="" >
+        </div>
     </div>
 </div>

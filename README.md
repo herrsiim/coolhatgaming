@@ -3,6 +3,11 @@ The navigation bar's categories should come as an separate request. At the momen
 
 If I have to filter all categories from the games array, the ordering of these items will be random. As for the design, it shows, that "Top Games" and "New Games" should be in the front. So I have to manually get them from array and put them into the front of array and also rename them ("New" -> "New Games" and "Top" -> "Top Games"). Maybe a separate request to get the game categories should be made available via the backend side which returns display name and category type. 
 
+# Notes
+## New & Top ribbons
+
+I decided to use a simple ribbon without a text for image. Why? Because this will keep the app future proof, for example, if we would need to translate the app, then we only need to add text strings, instead of adding separate images for different language ribbon pngs.
+
 ## Color palette
 The color palette consists of 4 colors (referenced from the FE. technical test).
 * #8DC63F
@@ -18,6 +23,8 @@ Note to the design doc. creator:
 
 # TODO's
 1. Modify games array category
+
+
 
 # Guestions
 1. Where are pngs?
