@@ -9,6 +9,7 @@ import { Game } from 'src/app/models/games';
 })
 export class HomeComponent implements OnInit {
   allGames: Array<Game> = [];
+  category: string = "top"; // Hardcoded value
 
   constructor(
     private gamesService: GamesService
@@ -21,11 +22,16 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  switchCategory(selectedItem): void {
+    console.log(selectedItem);
+    this.category = selectedItem;
+  }
+
   allGamesSuccess(games: Game[]): void {
     this.allGames = games;
   }
 
-  errorHandle(error: any) {
+  errorHandle(error: any): void {
     console.log(error);
   }
 

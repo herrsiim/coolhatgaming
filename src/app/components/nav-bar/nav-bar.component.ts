@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GamesService } from '../../services/games.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class NavBarComponent implements OnInit {
   gameCategories: string[] = [];
   activeCategory: string = "top";
 
+  @Output() selectCategory = new EventEmitter<string>();
+  
   constructor(
     private gamesService: GamesService
   ) { }
@@ -22,8 +24,9 @@ export class NavBarComponent implements OnInit {
     );
   }
 
-  setActive(category: string) {
+  setActive(category: string): void {
     this.activeCategory = category;
+    this.selectCategory.emit(category);
   }
 
   getCategoriesSuccess(categories: string[]): void {

@@ -1,6 +1,6 @@
-<nav-bar></nav-bar>
+<nav-bar (selectCategory)="switchCategory($event)"></nav-bar>
 <div class="wrap">
-    <div class="game" *ngFor="let game of allGames">
+    <div class="game" *ngFor="let game of allGames | categoryFilter:category">
         <img [src]="game.image" [alt]="game.name">
     </div>
 </div>

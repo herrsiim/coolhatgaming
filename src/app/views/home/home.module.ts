@@ -6,9 +6,10 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from 'src/app/components/shared.module';
 
 
-
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [
+    HomeComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,

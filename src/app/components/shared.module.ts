@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-
+import { CategoryFilterPipe } from '../pipes/category-filter.pipe';
 
 
 @NgModule({
@@ -9,10 +9,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     CommonModule
   ],
   declarations: [
-    NavBarComponent
+    NavBarComponent,
+    CategoryFilterPipe
   ],
   exports: [
-    NavBarComponent
+    NavBarComponent,
+    CategoryFilterPipe
   ],
 })
 export class SharedModule { }
