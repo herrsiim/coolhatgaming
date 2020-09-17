@@ -1,0 +1,25 @@
+:host {
+    .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        width: 100%;
+        max-width: 1440px;
+        margin-top: 50px;
+        justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        .game {
+            margin: 10px;
+            border-radius: 15px;
+            overflow: hidden;
+
+            img {
+                height: 100%;
+                width: auto;
+                cursor: pointer;
+            }
+        }
+    }
+}

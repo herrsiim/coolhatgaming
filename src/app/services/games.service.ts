@@ -14,11 +14,19 @@ export class GamesService {
     private httpClient: HttpClient
   ) { }
   
+  public getAllGames(): Observable<Array<Game>> {
+    return this.httpClient.get<Array<Game>>(`${environment.gameFeed}`)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
   /**
    * This will filter out all game categories into a single array of strings.
    * The main usage for this is to display all elements on the nav-bar.
    */
-  getAllCategories(): Observable<string[]> {
+  public getAllCategories(): Observable<string[]> {
     return this.httpClient.get<Array<Game>>(`${environment.gameFeed}`)
       .pipe(
         map(games => {

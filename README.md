@@ -11,7 +11,15 @@ The color palette consists of 4 colors (referenced from the FE. technical test).
 * #FCFCFC
 
 Note to the design doc. creator: 
-#FFFF and #FCFCFC are indistinguishable to the human eyes. I will use only one #FFFFFF for the test task.  
+#FFFFFF and #FCFCFC are indistinguishable to the human eyes. I will use only one #FFFFFF for the test task.  
+
+# Bugs
+1. Image broken http://stage.whgstage.com/scontent/images/games/NYXJACKPOTJESTER50000.jpg
 
 # TODO's
 1. Modify games array category
+
+# Guestions
+1. Where are pngs?
+2. What would be the first "default" view when the user enters the page.
+3. What would be the "default" for broken game image, fallback image.

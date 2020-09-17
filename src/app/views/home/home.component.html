@@ -1,2 +1,6 @@
 <nav-bar></nav-bar>
-<p>home works</p>
+<div class="wrap">
+    <div class="game" *ngFor="let game of allGames">
+        <img [src]="game.image" [alt]="game.name">
+    </div>
+</div>
