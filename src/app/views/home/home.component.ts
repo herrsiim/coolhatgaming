@@ -7,9 +7,10 @@ import { Game } from 'src/app/models/games';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
   allGames: Array<Game> = [];
-  category: string = "top"; // Hardcoded value
+  selectedCategory: string = 'top';
 
   constructor(
     private gamesService: GamesService
@@ -22,27 +23,49 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  /**
+   * This will decide if we should show ribbon or not.
+   * We must not show "new" on "new category" and "top" with "top"
+   * @param categories array of category strings
+   */
   displayRibbon(categories: string[]): boolean {
-    if (categories.includes('new') || categories.includes('top')) {
-      return true;
+    if (this.selectedCategory === 'new') {
+      if (categories.includes('top')) return true;
+    } else if (this.selectedCategory === 'top') {
+      if (categories.includes('new')) return true;
     } else {
-      return false;
+      if (categories.includes('new') || categories.includes('top')) {
+        return true;
+      }
     }
+    return false;
   }
 
+  /**
+   * Based on previous discussions, the "top" will always overrule the "new"
+   * if one item has both categories.
+   * @param categories array of category strings
+   */
   getRibbonText(categories: string[]): string {
-    if (categories.includes('top')) {
-      return 'top';
-    } else if (categories.includes('new')) {
-      return 'new';
+    if (this.selectedCategory === 'new') {
+      if (categories.includes('top')) return 'top';
+    } else if (this.selectedCategory === 'top') {
+      if (categories.includes('new')) return 'new';
     } else {
-      return '';
+      if (categories.includes('top')) {
+        return 'top';
+      } else if (categories.includes('new')) {
+        return 'new';
+      } else {
+        return '';
+      }
     }
+   
   }
 
   switchCategory(selectedItem): void {
     console.log(selectedItem);
-    this.category = selectedItem;
+    this.selectedCategory = selectedItem;
   }
 
   allGamesSuccess(games: Game[]): void {
