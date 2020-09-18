@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   allGames: Array<Game> = [];
   selectedCategory: string = 'top';
   allJackpots: Jackpot[] = [];
-  jackpotInterval: any;
+  jackpotInterval: any; 
+  jackpotIntervalSeconds: number = 3;
 
   constructor(
     private gamesService: GamesService,
@@ -33,6 +34,14 @@ export class HomeComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     clearInterval(this.jackpotInterval);
+  }
+  
+  /**
+   * If image has a broken link or is not found, we use fallback image
+   * @param img html image
+   */
+  imgNotFound(img: any) {
+    img.currentTarget.src = "/assets/img/img-error.jpg";
   }
 
 
@@ -125,9 +134,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.allGames = games;
     this.getJackpots(); // We get first jackpots when all games are loaded
     this.jackpotInterval = setInterval(() => {
-      // We update the jackpot once after 3 seconds
       this.getJackpots();
-    }, 3000);
+    }, 1000 * this.jackpotIntervalSeconds);
 
   }
 

@@ -1,7 +1,7 @@
 <nav-bar (selectCategory)="switchCategory($event)"></nav-bar>
 <div class="container">
     <div class="game-tile" *ngFor="let game of allGames | categoryFilter:selectedCategory">
-        <img class="display" [src]="game.image" [alt]="game.name">
+        <img class="display" [src]="game.image" [alt]="game.name" (error)="imgNotFound($event)">
         <div class="ribbon" *ngIf="displayRibbon(game.categories)">
             <span [innerHTML]="getRibbonText(game.categories)"></span>
             <img class="ribbon-img" src="../../../assets/img/ribbon.png" alt="" >

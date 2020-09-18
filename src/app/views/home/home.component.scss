@@ -15,22 +15,23 @@
             position: relative;
 
             &:hover {
-                animation: scale 0.3s forwards;
+                //animation: scale 0.3s forwards;
                 z-index: 1;
             }
 
             .display {
-                height: 100%;
-                width: auto;
+                height: 154px;
+                width: 260px;
                 cursor: pointer;
                 overflow: hidden;
                 border-radius: 15px;
+                box-shadow: 0px 0px 7px 0px rgba(130, 130, 130, 1);
             }
 
             .ribbon {
                 position: absolute;
                 top: -9px;
-                right: -15px;
+                right: -8px;
                 z-index: 2;
 
                 .ribbon-img {
@@ -55,7 +56,6 @@
                 background: rgb(0 0 0 / 0.3);
                 color: white;
                 text-align: center;
-                left: 4px;
                 top: 0;
                 font-weight: bold;
                 font-size: 20px;
