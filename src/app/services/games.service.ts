@@ -29,7 +29,8 @@ export class GamesService {
    * We also remove the following categories from the list: Fun, Virtual, Ball
    * and add a one singe instance for them called "Other"
    * 
-   * We also have to move the Top and New in front of the array.
+   * We also have to move the Top and New in front of the array. 
+   * reorderItems function will take care of that
    */
   public getAllCategories(): Observable<string[]> {
     return this.httpClient.get<Array<Game>>(`${environment.gameFeed}`)
@@ -54,7 +55,7 @@ export class GamesService {
       );
   }
 
-  reorderItems(items: string[]): void {
+  private reorderItems(items: string[]): void {
     if (items.includes('new')) {
       items.splice(items.indexOf('new'), 1);
       items.unshift('new');
