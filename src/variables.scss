@@ -1,7 +1,36 @@
-$green: #8DC63F;
+/* VARIABLES */
+$green: #8dc63f;
 $grey: #373737;
-$white: #FFFFFF;
+$white: #ffffff;
+$phone-break-point: 768px;
 
+/* MIXINS */
+@mixin menu-item {
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: white;
+    font-size: 26px;
+
+    &.active {
+        background-color: $green;
+    }
+
+    &:hover {
+        background-color: $green;
+    }
+}
+
+@mixin phone {
+    @media only screen and (max-width: $phone-break-point) {
+        @content;
+    }
+}
+
+/* ANIMATIONS */
 @keyframes scale {
     0% {
         transform: scaleX(1) scaleY(1);

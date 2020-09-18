@@ -3,30 +3,63 @@
 :host {
     display: block;
 
-    .wrap {
+    .container {
         display: flex;
-        height: 55px;
         width: 100%;
         background-color: $grey;
-        overflow-x: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+        @include phone {
+            display: none;
+        }
+        .menu-item {
+            @include menu-item;
+        }
 
-        span {
-            //min-width: 130px;
-            padding: 10px 30px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-transform: capitalize;
-            cursor: pointer;
-            color: white;
-            font-size: 26px;
+        /* Phone only layout starts here */
+        &.phone {
+            display: none;
+            position: relative;
+            overflow: show;
 
-            &.active {
-                background-color: $green;
+            @include phone {
+                display: block;
             }
 
-            &:hover {
-                background-color: $green;
+            .menu-bar {
+                @include menu-item;
+                cursor: default;
+                &:hover {
+                    background-color: $grey;
+                }
+
+                .btn {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 15px;
+                    @include phone;
+
+                    .stripe {
+                        width: 35px;
+                        height: 5px;
+                        background-color: white;
+                        margin: 6px 0;
+                        border-radius: 2px;
+                    }
+                }
+            }
+
+            .menu-items {
+                display: none;
+                position: absolute;
+                background-color: $grey;
+                z-index: 3;
+                width: 100%;
+
+                &.show {
+                    display: block;
+                }
             }
         }
     }

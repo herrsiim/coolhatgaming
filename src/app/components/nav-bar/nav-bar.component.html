@@ -1,6 +1,26 @@
-<div class="wrap">
-    <span *ngFor="let category of gameCategories"
+<div class="container">
+    <span class="menu-item"
+    *ngFor="let category of gameCategories"
     (click)="setActiveCategory(category)"
     [class.active]="category == activeCategory"
     [innerHTML]="category"></span>
 </div>
+
+<div class="container phone">
+    <span class="menu-bar">
+        <span [innerHTML]="activeCategory"></span>     
+        <div class="btn" (click)="toggleMenu()">
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+        </div>
+    </span>
+    <div class="menu-items" [class.show]="showMenu">
+        <span class="menu-item"
+        *ngFor="let category of gameCategories"
+        (click)="setActiveCategory(category); toggleMenu()"
+        [class.active]="category == activeCategory"
+        [innerHTML]="category"></span>
+    </div>
+</div>
+

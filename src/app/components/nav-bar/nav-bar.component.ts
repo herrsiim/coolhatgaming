@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
   gameCategories: string[] = [];
   activeCategory: string = "top"; // Default categoy selection
+  showMenu: boolean = false; // For mobile menu toggle
 
   @Output() selectCategory = new EventEmitter<string>();
 
@@ -25,6 +26,10 @@ export class NavBarComponent implements OnInit {
       this.getCategoriesSuccess.bind(this),
       this.requestFail.bind(this)
     );
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
   }
 
   setActiveCategory(category: string): void {
