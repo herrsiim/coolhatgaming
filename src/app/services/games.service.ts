@@ -28,6 +28,8 @@ export class GamesService {
    * 
    * We also remove the following categories from the list: Fun, Virtual, Ball
    * and add a one singe instance for them called "Other"
+   * 
+   * We also have to move the Top and New in front of the array.
    */
   public getAllCategories(): Observable<string[]> {
     return this.httpClient.get<Array<Game>>(`${environment.gameFeed}`)
@@ -36,19 +38,31 @@ export class GamesService {
           let filteredCategories: Array<string> = [];
           for (let game of games) {
             for (let gameCategory of game.categories) {
-              if (!filteredCategories.includes(gameCategory)) { 
-                if(gameCategory != 'fun' && gameCategory != 'virtual' && gameCategory != 'ball') {
-                  filteredCategories.push(gameCategory); 
+              if (!filteredCategories.includes(gameCategory)) {
+                if (gameCategory != 'fun' && gameCategory != 'virtual' && gameCategory != 'ball') {
+                  filteredCategories.push(gameCategory);
                 }
               }
             }
           }
           filteredCategories.push('other');
+          this.reorderItems(filteredCategories);
           return filteredCategories;
         }),
         retry(3),
         catchError(this.handleError)
       );
+  }
+
+  reorderItems(items: string[]): void {
+    if (items.includes('new')) {
+      items.splice(items.indexOf('new'), 1);
+      items.unshift('new');
+    }
+    if (items.includes('top')) {
+      items.splice(items.indexOf('top'), 1);
+      items.unshift('top');
+    }
   }
 
   private handleError(error: HttpErrorResponse) {

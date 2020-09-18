@@ -6,7 +6,7 @@ If I have to filter all categories from the games array, the ordering of these i
 
 So I have to (1)manually get them from array and put them into the front of array and (2)also rename them ("New" -> "New Games" and "Top" -> "Top Games"). 
 
-Maybe a separate request to get the game categories should be made available via the backend side which returns display name and category type?
+Maybe a separate request to get the game categories should be made available via the backend side which returns display name and category type? 🤔
 
 ## Navigation bar mobile view
 The single design image provided to me didn't contain any information on how the menu should look on mobile devices, so went ahead and made a custom solution by myself.
