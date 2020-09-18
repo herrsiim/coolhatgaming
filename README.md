@@ -1,4 +1,11 @@
 # Notes
+
+Once the project has been cloned, run `npm install` to install all the dependencies.
+
+`npm start` will start the project in development mode.
+
+`npm run build:prod` will generate minified project into `Dist/` folder. If debuggable build is needed, simply run `npm run build`.
+
 ## Navigation bar items
 The navigation bar categories should come as an separate request. At the moment I have to filter out all available categories based on the all games request. This isn't that efficient as if they could be requested from a single source and skip the filtering functions to show only one category.
 
