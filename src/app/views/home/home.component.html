@@ -6,5 +6,6 @@
             <span [innerHTML]="getRibbonText(game.categories)"></span>
             <img class="ribbon-img" src="../../../assets/img/ribbon.png" alt="" >
         </div>
+        <div class="jackpot" *ngIf="hasJackpot(game.id)" [innerHTML]="getSingleJackpot(game.id)"></div>
     </div>
 </div>

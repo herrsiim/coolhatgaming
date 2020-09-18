@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GamesService } from 'src/app/services/games.service';
+import { JackpotService } from 'src/app/services/jackpot.service';
 import { Game } from 'src/app/models/games';
+import { Jackpot } from 'src/app/models/jackpot';
 
 @Component({
   selector: 'home',
@@ -8,12 +10,15 @@ import { Game } from 'src/app/models/games';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   allGames: Array<Game> = [];
   selectedCategory: string = 'top';
+  allJackpots: Jackpot[] = [];
+  jackpotInterval: any;
 
   constructor(
-    private gamesService: GamesService
+    private gamesService: GamesService,
+    private jackpotService: JackpotService
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +26,47 @@ export class HomeComponent implements OnInit {
       this.allGamesSuccess.bind(this),
       this.errorHandle.bind(this)
     );
+  }
+
+  /**
+   * Clear interval when component has been destroyed
+   */
+  ngOnDestroy(): void {
+    clearInterval(this.jackpotInterval);
+  }
+
+
+  jackpotSuccess(data: Jackpot[]): void {
+    this.allJackpots = data;
+  }
+
+  /**
+   * This will get the jackpot for a single game
+   * @param id game id
+   */
+  getSingleJackpot(id: string): string {
+    for (let jackpot of this.allJackpots) {
+      if (jackpot.game === id) {
+        return `&#163;${this.numberWithCommas(jackpot.amount)}`;
+      }
+    }
+  }
+
+  numberWithCommas(number: number): string {
+    if (number === 0) {
+      return '0';
+    } else {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
+
+  hasJackpot(id: string): boolean {
+    for (let jackpot of this.allJackpots) {
+      if (jackpot.game === id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -60,20 +106,39 @@ export class HomeComponent implements OnInit {
         return '';
       }
     }
-   
   }
 
+  /**
+   * Filters out all games based on selected category
+   * @param selectedItem games category
+   */
   switchCategory(selectedItem): void {
-    console.log(selectedItem);
     this.selectedCategory = selectedItem;
   }
 
+  /**
+   * Will display all available games. This function will also 
+   * start interval for available jackpots.
+   * @param games all available games which have been requested
+   */
   allGamesSuccess(games: Game[]): void {
     this.allGames = games;
+    this.getJackpots(); // We get first jackpots when all games are loaded
+    this.jackpotInterval = setInterval(() => {
+      // We update the jackpot once after 3 seconds
+      this.getJackpots();
+    }, 3000);
+
+  }
+
+  getJackpots() {
+    this.jackpotService.getAllJackpot().subscribe(
+      this.jackpotSuccess.bind(this),
+      this.errorHandle.bind(this)
+    );
   }
 
   errorHandle(error: any): void {
     console.log(error);
   }
-
 }
