@@ -18,6 +18,9 @@ Because the ribbons for "new" and "top" were not provided, I decided to use a si
 * If one game has both then the "Top" one will rule over "New".
 * If selected category is "New" then we only show "Top" ribbon and vice versa
 
+## Play button
+Play button was not shown on the design guide so I created it by myself.
+
 ## Color palette
 The color palette consists of 4 colors (referenced from the FE. technical test).
 * #8DC63F
@@ -33,6 +36,3 @@ It seems that there is one broken image in the games list:
 http://stage.whgstage.com/scontent/images/games/NYXJACKPOTJESTER50000.jpg
 
 I created a custom image for broken images, so it wouldn't break the layout and it would look nice to the end user.
-
-# TODO's
-1. Play button
