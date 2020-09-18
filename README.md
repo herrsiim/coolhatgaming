@@ -36,4 +36,3 @@ I created a custom image for broken images, so it wouldn't break the layout and 
 
 # TODO's
 1. Play button
-2. Update names in the menu for "Top" and "New"

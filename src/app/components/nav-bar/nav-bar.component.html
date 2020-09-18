@@ -3,12 +3,12 @@
     *ngFor="let category of gameCategories"
     (click)="setActiveCategory(category)"
     [class.active]="category == activeCategory"
-    [innerHTML]="category"></span>
+    [innerHTML]="getCategoryName(category)"></span>
 </div>
 
 <div class="container phone">
     <span class="menu-bar">
-        <span [innerHTML]="activeCategory"></span>     
+        <span [innerHTML]="getCategoryName(activeCategory)"></span>     
         <div class="btn" (click)="toggleMenu()">
             <div class="stripe"></div>
             <div class="stripe"></div>
@@ -20,7 +20,7 @@
         *ngFor="let category of gameCategories"
         (click)="setActiveCategory(category); toggleMenu()"
         [class.active]="category == activeCategory"
-        [innerHTML]="category"></span>
+        [innerHTML]="getCategoryName(category)"></span>
     </div>
 </div>
 

@@ -55,6 +55,13 @@ export class GamesService {
       );
   }
 
+  /**
+   * This will take "new" and "top" from the array
+   * and will put them in front. It also checks if they exist.
+   * 
+   * NOTICE: We don't need to return anything from this function.
+   * @param items category items
+   */
   private reorderItems(items: string[]): void {
     if (items.includes('new')) {
       items.splice(items.indexOf('new'), 1);
