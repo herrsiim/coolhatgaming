@@ -13,7 +13,7 @@ export class GamesService {
   constructor(
     private httpClient: HttpClient
   ) { }
-  
+
   public getAllGames(): Observable<Array<Game>> {
     return this.httpClient.get<Array<Game>>(`${environment.gameFeed}`)
       .pipe(
@@ -25,6 +25,9 @@ export class GamesService {
   /**
    * This will filter out all game categories into a single array of strings.
    * The main usage for this is to display all elements on the nav-bar.
+   * 
+   * We also remove the following categories from the list: Fun, Virtual, Ball
+   * and add a one singe instance for them called "Other"
    */
   public getAllCategories(): Observable<string[]> {
     return this.httpClient.get<Array<Game>>(`${environment.gameFeed}`)
@@ -33,9 +36,14 @@ export class GamesService {
           let filteredCategories: Array<string> = [];
           for (let game of games) {
             for (let gameCategory of game.categories) {
-              if (!filteredCategories.includes(gameCategory)) filteredCategories.push(gameCategory);
+              if (!filteredCategories.includes(gameCategory)) { 
+                if(gameCategory != 'fun' && gameCategory != 'virtual' && gameCategory != 'ball') {
+                  filteredCategories.push(gameCategory); 
+                }
+              }
             }
           }
+          filteredCategories.push('other');
           return filteredCategories;
         }),
         retry(3),
